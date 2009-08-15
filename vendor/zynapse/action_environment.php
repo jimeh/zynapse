@@ -47,7 +47,7 @@ class ActionEnvironment {
 		$public_path,
 		$tmp_path,
 		$cache_path,
-		$scripts_path,
+		$script_path,
 		
 		# misc
 		$is_windows,
@@ -59,12 +59,21 @@ class ActionEnvironment {
 		$this->load_environment_file();
 	}
 	
+	function __wakeup () {
+		$this->define_constants();
+	}
+	
 	function load_environment_file () {
 		require_once(ZNAP_CONFIG . "/environment.php");
-		$this->env = $environment;
 		if ( !empty($enable_host_specific_configuration) ) {
 			$this->load_hosts_file();
 		}
+		$this->load_environment_specific_file();
+		$this->define_constants();
+	}
+	
+	function load_environment_specific_file () {
+		require_once(ZNAP_CONFIG . "/environments/". $this->env . ".php");
 	}
 	
 	function load_hosts_file () {
@@ -87,7 +96,7 @@ class ActionEnvironment {
 		$this->public_path = ZNAP_ROOT . "/public";
 		$this->tmp_path = ZNAP_ROOT . "/tmp";
 		$this->cache_path = $this->tmp_path . "/log";
-		$this->scripts_path = ZNAP_LIB_ROOT . "/shell_scripts";
+		$this->script_path = ZNAP_ROOT . "/script";
 	}
 	
 	function set_include_paths () {
@@ -98,15 +107,18 @@ class ActionEnvironment {
 			$this->is_windows = true;
 			$this->path_seperator = ";";
 		}
-		
 		ini_set("include_path",
 			'.' . $this->path_seperator .
 			ZNAP_LIB_ROOT . $this->path_seperator .
-			$this->scripts_path . $this->path_seperator .
+			ZNAP_LIB_ROOT . "/script" . $this->path_seperator .
 			$this->lib_path . $this->path_seperator .
 			ini_get('include_path')
 		);
-		
+	}
+	
+	function define_constants () {
+		define("ZNAP_ENV", $this->env);
+		define("ZNAP_MODE", $this->mode);
 	}
 	
 	function match_to_host ($list = array()) {
