@@ -1,7 +1,7 @@
 <?php
 /*
 
-   Zynapse Environment - detect and configure environment
+   ActionEnvironment - detect and configure environment
 
 
    http://www.zynapse.org/
