@@ -39,7 +39,7 @@ class ActionEnvironment {
 		$env,
 		$mode,
 		$root,
-	
+		
 		# paths
 		$apps_path,
 		$lib_path,
@@ -52,6 +52,7 @@ class ActionEnvironment {
 		# misc
 		$is_windows,
 		$path_separator;
+	
 	
 	function __construct () {
 		$this->set_include_paths();
@@ -117,10 +118,10 @@ class ActionEnvironment {
 		if ( is_array($list) && !empty($list) ) {
 			$new_config = array();
 			foreach( $list as $host => $settings ) {
-				$regex = preg_quote($host, '/');
-				$regex = str_replace('\*', '.*', $regex);
-				$http_host = (substr($_SERVER['HTTP_HOST'], 0, 4) == 'www.') ? substr($_SERVER['HTTP_HOST'], 4) : $_SERVER['HTTP_HOST'] ;
-				if ( preg_match('/^'.$regex.'$/i', $http_host) ) {
+				$regex = preg_quote($host, "/");
+				$regex = str_replace("\*", ".*", $regex);
+				$http_host = (substr($_SERVER["HTTP_HOST"], 0, 4) == "www.") ? substr($_SERVER["HTTP_HOST"], 4) : $_SERVER["HTTP_HOST"] ;
+				if ( preg_match("/^".$regex."$/i", $http_host) ) {
 					foreach( $settings as $key => $value ) {
 						if ( !array_key_exists($key, $new_config) ) {
 							$new_config[$key] = $value;
@@ -131,7 +132,6 @@ class ActionEnvironment {
 		}
 		return (!empty($new_config)) ? $new_config : false ;
 	}
-	
 	
 }
 

@@ -40,8 +40,8 @@ class Zynapse {
 		$locale, // ActionLocale
 		$log;    // ActionLog
 	
+	
 	function init () {
-
 		require_once(ZNAP_LIB_ROOT . "/action_environment.php");
 		require_once(ZNAP_LIB_ROOT . "/action_base.php");
 		require_once(ZNAP_LIB_ROOT . "/active_session.php");

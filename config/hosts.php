@@ -1,4 +1,10 @@
 <?php
+/*
+
+   Hosts
+    - configure host specific environment settings
+
+*/
 
 # host configuration
 # - set environment, display mode, and root path for
