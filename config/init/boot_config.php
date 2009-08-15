@@ -9,7 +9,7 @@
 
 
 # specify a custom path to Zynapse libs
-// $zynapse_libs = '';
+// $zynapse_libs = "";
 
 
 

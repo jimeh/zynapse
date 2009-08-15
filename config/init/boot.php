@@ -7,8 +7,8 @@
 */
 
 // set zynapse root path
-if ( !defined('ZNAP_ROOT') ) {
-	define('ZNAP_ROOT', dirname(dirname(dirname(__FILE__))));
+if ( !defined("ZNAP_ROOT") ) {
+	define("ZNAP_ROOT", dirname(dirname(dirname(__FILE__))));
 }
 
 // set zynapse config path
