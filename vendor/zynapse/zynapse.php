@@ -33,8 +33,21 @@
 
 class Zynapse {
 	
+	public static
+		$env,    // ActionEnvironment
+		$base,   // ActionController
+		$view,   // ActionView
+		$locale, // ActionLocale
+		$log;    // ActionLog
+	
 	function init () {
-		echo "hello world";
+
+		require_once(ZNAP_LIB_ROOT . "/action_environment.php");
+		
+		self::$env = new ActionEnvironment();
+		
+		echo "hello world<br />\n";
+		echo self::$env->env;
 	}
 	
 }
