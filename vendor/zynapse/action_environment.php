@@ -111,7 +111,6 @@ class ActionEnvironment {
 			'.' . $this->path_seperator .
 			ZNAP_LIB_ROOT . $this->path_seperator .
 			ZNAP_LIB_ROOT . "/script" . $this->path_seperator .
-			$this->lib_path . $this->path_seperator .
 			ini_get('include_path')
 		);
 	}

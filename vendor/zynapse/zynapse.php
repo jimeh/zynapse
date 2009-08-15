@@ -35,7 +35,7 @@ class Zynapse {
 	
 	public static
 		$env,    // ActionEnvironment
-		$base,   // ActionController
+		$base,   // ActionBase
 		$view,   // ActionView
 		$locale, // ActionLocale
 		$log;    // ActionLog
