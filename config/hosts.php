@@ -6,6 +6,7 @@
 
 */
 
+
 # host configuration
 # - set environment, display mode, and root path for
 # specific hosts. available options are "environment",
@@ -28,5 +29,6 @@ $hosts = array(
 	// 	'root' => 'admin',
 	// ),
 );
+
 
 ?>

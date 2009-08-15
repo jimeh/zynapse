@@ -6,10 +6,12 @@
 
 */
 
+
 // set zynapse root path
 if ( !defined("ZNAP_ROOT") ) {
 	define("ZNAP_ROOT", dirname(dirname(dirname(__FILE__))));
 }
+
 
 // set zynapse config path
 define("ZNAP_CONFIG", ZNAP_ROOT . "/config");
@@ -27,7 +29,6 @@ if ( !empty($zynapse_libs) && is_file($zynapse_libs . "/zynapse.php") ) {
 } elseif ( is_file(dirname(ZNAP_ROOT) . "/vendor/zynapse/zynapse.php") ) {
 	define("ZNAP_LIB_ROOT", dirname(ZNAP_ROOT) . "/vendor/zynapse");
 }
-
 
 
 // require main zynapse class
