@@ -47,6 +47,9 @@ class Zynapse {
 		require_once(ZNAP_LIB_ROOT . "/active_session.php");
 		
 		self::$env = new ActionEnvironment();
+		self::$base = new ActionBase();
+		
+		self::$base->env =& self::$env;
 		
 		echo "hello world<br />\n";
 		echo self::$env->env;

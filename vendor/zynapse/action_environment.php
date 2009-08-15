@@ -54,7 +54,6 @@ class ActionEnvironment {
 		$path_separator;
 	
 	function __construct () {
-		$this->set_paths();
 		$this->set_include_paths();
 		$this->load_environment_file();
 	}
@@ -72,10 +71,6 @@ class ActionEnvironment {
 		$this->define_constants();
 	}
 	
-	function load_environment_specific_file () {
-		require_once(ZNAP_CONFIG . "/environments/". $this->env . ".php");
-	}
-	
 	function load_hosts_file () {
 		require_once(ZNAP_CONFIG . "/hosts.php");		
 		$host = $this->match_to_host($hosts);
@@ -89,14 +84,8 @@ class ActionEnvironment {
 		}
 	}
 	
-	function set_paths () {
-		$this->apps_path = ZNAP_ROOT . "/apps";
-		$this->lib_path = ZNAP_ROOT . "/lib";
-		$this->log_path = ZNAP_ROOT . "/log";
-		$this->public_path = ZNAP_ROOT . "/public";
-		$this->tmp_path = ZNAP_ROOT . "/tmp";
-		$this->cache_path = $this->tmp_path . "/log";
-		$this->script_path = ZNAP_ROOT . "/script";
+	function load_environment_specific_file () {
+		require_once(ZNAP_CONFIG . "/environments/". $this->env . ".php");
 	}
 	
 	function set_include_paths () {
@@ -116,8 +105,12 @@ class ActionEnvironment {
 	}
 	
 	function define_constants () {
-		define("ZNAP_ENV", $this->env);
-		define("ZNAP_MODE", $this->mode);
+		if ( !defined("ZNAP_ENV") ) {
+			define("ZNAP_ENV", $this->env);
+		}
+		if ( !defined("ZNAP_MODE") ) {
+			define("ZNAP_MODE", $this->mode);
+		}
 	}
 	
 	function match_to_host ($list = array()) {
