@@ -1,7 +1,7 @@
 <?php
 /*
 
-   Zynapse - main class
+   ActionView - output rendering
 
 
    http://www.zynapse.org/
@@ -31,51 +31,14 @@
 */
 
 
-class Zynapse {
+class ActionView {
 	
-	public static
-	
-		# Action Classes
-		$env,    // ActionEnvironment
-		$base,   // ActionBase
-		$view,   // ActionView
-		$log,    // ActionLog
-		$locale; // ActiveLocale
-	
+	function __construct () {
+		
+	}
 	
 	function init () {
-		require_once(ZNAP_LIB_ROOT . "/action_environment.php");
-		require_once(ZNAP_LIB_ROOT . "/action_base.php");
-		require_once(ZNAP_LIB_ROOT . "/action_view.php");
-		require_once(ZNAP_LIB_ROOT . "/active_session.php");
 		
-		$start = microtime(true);
-		
-		self::init_env();
-		self::init_base();
-		self::init_view();
-		
-		echo microtime(true) - $start . "<br />\n";
-		echo "hello world<br />\n";
-		echo self::$env->environment . "<br />\n<br />\n";
-		
-		// echo serialize(self::$env) . "<br />\n<br />\n";
-		// echo serialize(self::$base) . "<br />\n<br />\n";
-	}
-	
-	function init_env () {
-		self::$env = new ActionEnvironment();
-		self::$env->init();
-	}
-	
-	function init_base () {
-		self::$base = new ActionBase();
-		self::$base->init();
-	}
-	
-	function init_view () {
-		self::$view = new ActionView();
-		self::$view->init();
 	}
 	
 }
