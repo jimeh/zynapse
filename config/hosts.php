@@ -21,11 +21,10 @@ $hosts = array(
 	// 'admin.zynapse' => array(
 	// 	'root' => 'admin',
 	// ),
-	// 'zynapse.org' => array(
+	// '*zynapse.org' => array(
 	// 	'environment' => 'production',
 	// ),
 	// 'admin.zynapse.org' => array(
-	// 	'environment' => 'production',
 	// 	'root' => 'admin',
 	// ),
 );
