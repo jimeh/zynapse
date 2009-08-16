@@ -35,13 +35,13 @@ class ActionBase {
 	
 	public
 		
-		# components
+		# Components
 		$env,    // ActionEnvironment
 		$view,   // ActionView
 		$locale, // ActionLocale
 		$log,    // ActionLog
 		
-		# paths
+		# Paths
 		$apps_path,
 		$lib_path,
 		$log_path,
@@ -52,6 +52,10 @@ class ActionBase {
 	
 	
 	function __construct () {
+		
+	}
+	
+	function init () {
 		$this->set_paths();
 	}
 	

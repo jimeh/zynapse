@@ -35,21 +35,12 @@ class ActionEnvironment {
 	
 	public
 	
-		# main
+		# Main
 		$env,
 		$mode,
 		$root,
 		
-		# paths
-		$apps_path,
-		$lib_path,
-		$log_path,
-		$public_path,
-		$tmp_path,
-		$cache_path,
-		$script_path,
-		
-		# misc
+		# Misc.
 		$is_windows,
 		$path_separator;
 	
