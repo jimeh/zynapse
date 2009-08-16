@@ -39,8 +39,8 @@ class Zynapse {
 		$env,    // ActionEnvironment
 		$base,   // ActionBase
 		$view,   // ActionView
-		$locale, // ActionLocale
-		$log;    // ActionLog
+		$log,    // ActionLog
+		$locale; // ActiveLocale
 	
 	
 	function init () {

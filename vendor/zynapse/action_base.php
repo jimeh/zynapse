@@ -38,8 +38,8 @@ class ActionBase {
 		# Components
 		$env,    // ActionEnvironment
 		$view,   // ActionView
-		$locale, // ActionLocale
 		$log,    // ActionLog
+		$locale, // ActiveLocale
 		
 		# Paths
 		$apps_path,
