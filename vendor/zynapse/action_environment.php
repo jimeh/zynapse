@@ -36,7 +36,7 @@ class ActionEnvironment {
 	public
 	
 		# Main
-		$env,
+		$environment,
 		$mode,
 		$root,
 		
@@ -67,7 +67,7 @@ class ActionEnvironment {
 		require_once(ZNAP_CONFIG . "/hosts.php");		
 		$host = $this->match_to_host($hosts);
 		if ( !empty($host) ) {
-			if ( !empty($host['environment']) ) $this->env = $host['environment'];
+			if ( !empty($host['environment']) ) $this->environment = $host['environment'];
 			if ( !empty($host['mode']) ) $this->mode = $host['mode'];
 			if ( !empty($host['root']) ) {
 				if ( !empty($_SERVER['REQUEST_URI']) ) $_SERVER['REQUEST_URI'] = '/'.$host['root'].$_SERVER['REQUEST_URI'];
@@ -77,7 +77,7 @@ class ActionEnvironment {
 	}
 	
 	function load_environment_specific_file () {
-		require_once(ZNAP_CONFIG . "/environments/". $this->env . ".php");
+		require_once(ZNAP_CONFIG . "/environments/". $this->environment . ".php");
 	}
 	
 	function set_include_paths () {
@@ -98,7 +98,7 @@ class ActionEnvironment {
 	
 	function define_constants () {
 		if ( !defined("ZNAP_ENV") ) {
-			define("ZNAP_ENV", $this->env);
+			define("ZNAP_ENV", $this->environment);
 		}
 		if ( !defined("ZNAP_MODE") ) {
 			define("ZNAP_MODE", $this->mode);

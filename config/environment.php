@@ -12,7 +12,7 @@
 # configurations.
 #
 # ( development | test | staging | production )
-$this->env = 'development';
+$this->environment = 'development';
 
 
 # Default server display mode - Overridden by host

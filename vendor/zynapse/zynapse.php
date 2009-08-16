@@ -55,7 +55,7 @@ class Zynapse {
 		self::$base->env =& self::$env;
 		
 		echo "hello world<br />\n";
-		echo self::$env->env;
+		echo self::$env->environment;
 	}
 	
 }
