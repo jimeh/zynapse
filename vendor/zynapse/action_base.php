@@ -55,6 +55,21 @@ class ActionBase {
 		
 	}
 	
+	function __sleep () {
+		$blacklist = array_flip(array("env", "view", "log", "locale"));
+		$save = array();
+		foreach( $this as $key => $value ) {
+			if ( !array_key_exists($key, $blacklist) ) {
+				$save[] = $key;
+			}
+		}
+		return $save;
+	}
+	
+	function __wakeup () {
+		
+	}
+	
 	function init () {
 		$this->set_paths();
 	}
@@ -65,7 +80,7 @@ class ActionBase {
 		$this->log_path = ZNAP_ROOT . "/log";
 		$this->public_path = ZNAP_ROOT . "/public";
 		$this->tmp_path = ZNAP_ROOT . "/tmp";
-		$this->cache_path = $this->tmp_path . "/log";
+		$this->cache_path = $this->tmp_path . "/cache";
 		$this->script_path = ZNAP_ROOT . "/script";
 	}
 

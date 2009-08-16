@@ -59,6 +59,9 @@ class ActionEnvironment {
 		if ( !empty($enable_host_specific_configuration) ) {
 			$this->load_hosts_file();
 		}
+		if ( !empty($_SERVER['ZNAP_ENV']) ) {
+			$this->environment = $_SERVER['ZNAP_ENV'];
+		}
 		$this->load_environment_specific_file();
 		$this->define_constants();
 	}

@@ -48,14 +48,18 @@ class Zynapse {
 		require_once(ZNAP_LIB_ROOT . "/action_base.php");
 		require_once(ZNAP_LIB_ROOT . "/active_session.php");
 		
+		$start = microtime(true);
 		self::$env = new ActionEnvironment();
 		
 		self::$base = new ActionBase();
 		self::$base->init();
-		self::$base->env =& self::$env;
 		
+		echo microtime(true) - $start . "<br />\n";
 		echo "hello world<br />\n";
-		echo self::$env->environment;
+		echo self::$env->environment . "<br />\n<br />\n";
+		
+		// echo serialize(self::$env) . "<br />\n<br />\n";
+		// echo serialize(self::$base) . "<br />\n<br />\n";
 	}
 	
 }
