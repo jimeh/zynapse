@@ -51,7 +51,7 @@ class ActionEnvironment {
 	
 	function init () {
 		$this->set_include_paths();
-		$this->load_environment_file();		
+		$this->load_environment_file();
 	}
 	
 	function __wakeup () {
