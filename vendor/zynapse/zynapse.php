@@ -49,13 +49,10 @@ class Zynapse {
 		require_once(ZNAP_LIB_ROOT."/action_view.php");
 		require_once(ZNAP_LIB_ROOT."/active_session.php");
 		
-		$start = microtime(true);
-		
 		self::init_env();
 		self::init_base();
 		self::init_view();
 		
-		echo microtime(true) - $start."<br />\n";
 		echo "hello world<br />\n";
 		echo self::$env->environment."<br />\n<br />\n";
 	}
