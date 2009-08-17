@@ -75,13 +75,13 @@ class ActionBase {
 	}
 	
 	function set_paths () {
-		$this->apps_path = ZNAP_ROOT . "/apps";
-		$this->lib_path = ZNAP_ROOT . "/lib";
-		$this->log_path = ZNAP_ROOT . "/log";
-		$this->public_path = ZNAP_ROOT . "/public";
-		$this->tmp_path = ZNAP_ROOT . "/tmp";
-		$this->cache_path = $this->tmp_path . "/cache";
-		$this->script_path = ZNAP_ROOT . "/script";
+		$this->apps_path = ZNAP_ROOT."/apps";
+		$this->lib_path = ZNAP_ROOT."/lib";
+		$this->log_path = ZNAP_ROOT."/log";
+		$this->public_path = ZNAP_ROOT."/public";
+		$this->tmp_path = ZNAP_ROOT."/tmp";
+		$this->cache_path = $this->tmp_path."/cache";
+		$this->script_path = ZNAP_ROOT."/script";
 	}
 
 }

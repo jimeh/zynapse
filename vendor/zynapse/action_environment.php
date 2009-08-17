@@ -59,7 +59,7 @@ class ActionEnvironment {
 	}
 	
 	function load_environment_file () {
-		require_once(ZNAP_CONFIG . "/environment.php");
+		require_once(ZNAP_CONFIG."/environment.php");
 		if ( !empty($enable_host_specific_configuration) ) {
 			$this->load_hosts_file();
 		}
@@ -71,7 +71,7 @@ class ActionEnvironment {
 	}
 	
 	function load_hosts_file () {
-		require_once(ZNAP_CONFIG . "/hosts.php");		
+		require_once(ZNAP_CONFIG."/hosts.php");		
 		$host = $this->match_to_host($hosts);
 		if ( !empty($host) ) {
 			if ( !empty($host['environment']) ) $this->environment = $host['environment'];
@@ -84,7 +84,7 @@ class ActionEnvironment {
 	}
 	
 	function load_environment_specific_file () {
-		require_once(ZNAP_CONFIG . "/environments/". $this->environment . ".php");
+		require_once(ZNAP_CONFIG."/environments/".$this->environment.".php");
 	}
 	
 	function set_include_paths () {
@@ -96,9 +96,9 @@ class ActionEnvironment {
 			$this->path_seperator = ";";
 		}
 		ini_set("include_path",
-			'.' . $this->path_seperator .
-			ZNAP_LIB_ROOT . $this->path_seperator .
-			ZNAP_LIB_ROOT . "/script" . $this->path_seperator .
+			'.'.$this->path_seperator.
+			ZNAP_LIB_ROOT.$this->path_seperator.
+			ZNAP_LIB_ROOT."/script".$this->path_seperator.
 			ini_get('include_path')
 		);
 	}
