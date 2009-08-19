@@ -20,6 +20,8 @@ require_once($config_path."/init/boot.php");
 // initialize zynapse
 Zynapse::init();
 
-echo "<br />\n<br />\nboot time: ".number_format(microtime(true) - $start, 6)." seconds<br />\n";
+$time = number_format(microtime(true) - $start, 6);
+echo "<br />\n<br />\nboot time: ".$time." seconds<br />\n";
+echo "reqs/second: ".round(1 / $time)."<br />\n";
 
 ?>
