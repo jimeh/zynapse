@@ -33,6 +33,37 @@
 
 class ActiveSession {
 	
+	public
+	
+		# client user agent (OS, browser, etc.)
+		$user_agent = null,
+		
+		# client's remote ip address
+		$ip = null,
+	
+		# session id
+		$id = null,
+		
+		# session key to store verification data in
+		$key = '____zynapse_secure_session_data_verification____',
+		
+		# Session class has been started?
+		$started = false;
+	
+	
+	function __construct () {
+		if ( array_key_exists('sess_id', $_REQUEST) ) {
+			session_id($_REQUEST['sess_id']);
+		}
+		session_start();
+      $this->id = session_id();
+	}
+	
+	function init () {
+		//TODO validate and init zynapse's session features
+		$this->started = true;
+	}
+	
 }
 
 ?>

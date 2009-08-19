@@ -36,11 +36,12 @@ class Zynapse {
 	public static
 	
 		# Action Classes
-		$env,    // ActionEnvironment
-		$base,   // ActionBase
-		$view,   // ActionView
-		$log,    // ActionLog
-		$locale; // ActiveLocale
+		$env,     // ActionEnvironment
+		$base,    // ActionBase
+		$view,    // ActionView
+		$log,     // ActionLog
+		$locale,  // ActiveLocale
+		$session; // ActiveSession
 	
 	
 	function init () {
@@ -49,9 +50,16 @@ class Zynapse {
 		require_once(ZNAP_LIB_ROOT."/action_view.php");
 		require_once(ZNAP_LIB_ROOT."/active_session.php");
 		
+		// enable php's session storage
+		self::$session = new ActiveSession();
+		
+		// init core components
 		self::init_env();
 		self::init_base();
 		self::init_view();
+		
+		// init zynapse's session system
+		self::$session->init();
 		
 		echo "hello world<br />\n";
 		echo self::$env->environment."<br />\n<br />\n";
