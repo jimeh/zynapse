@@ -45,22 +45,23 @@ class ActiveSession {
 		$id = null,
 		
 		# session key to store verification data in
-		$key = '____zynapse_secure_session_data_verification____',
+		$key = '____active_session_verification_data____',
 		
 		# Session class has been started?
 		$started = false;
 	
 	
 	function __construct () {
-		if ( array_key_exists('sess_id', $_REQUEST) ) {
-			session_id($_REQUEST['sess_id']);
-		}
+		
+	}
+	
+	function start () {
 		session_start();
-      $this->id = session_id();
 	}
 	
 	function init () {
 		//TODO validate and init zynapse's session features
+      $this->id = session_id();
 		$this->started = true;
 	}
 	

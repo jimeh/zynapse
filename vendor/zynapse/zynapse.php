@@ -50,34 +50,27 @@ class Zynapse {
 		require_once(ZNAP_LIB_ROOT."/action_view.php");
 		require_once(ZNAP_LIB_ROOT."/active_session.php");
 		
-		// enable php's session storage
+		// Enable PHP sessions
+		ActiveSession::start();
+		
+		// Init the environment system (ActionEnvironment)
+		self::$env = new ActionEnvironment();
+		self::$env->init();
+		
+		// Init the session control system (ActiveSession)
 		self::$session = new ActiveSession();
-		
-		// init core components
-		self::init_env();
-		self::init_base();
-		self::init_view();
-		
-		// init zynapse's session system
 		self::$session->init();
+		
+		// Init the core controller system (ActionBase)
+		self::$base = new ActionBase();
+		self::$base->init();
+		
+		// Init the output and page rendering system (ActionView)
+		self::$view = new ActionView();
+		self::$view->init();
 		
 		echo "hello world<br />\n";
 		echo self::$env->environment."<br />\n<br />\n";
-	}
-	
-	function init_env () {
-		self::$env = new ActionEnvironment();
-		self::$env->init();
-	}
-	
-	function init_base () {
-		self::$base = new ActionBase();
-		self::$base->init();
-	}
-	
-	function init_view () {
-		self::$view = new ActionView();
-		self::$view->init();
 	}
 	
 }
