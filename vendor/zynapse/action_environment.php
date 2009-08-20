@@ -40,6 +40,9 @@ class ActionEnvironment {
 		$mode,
 		$root,
 		
+		# Components
+		$session,
+		
 		# Misc.
 		$is_windows,
 		$path_separator;

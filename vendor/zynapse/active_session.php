@@ -48,7 +48,39 @@ class ActiveSession {
 		$key = '____active_session_verification_data____',
 		
 		# Session class has been started?
-		$started = false;
+		$started = false,
+
+
+		##
+		# PHP Session settings
+		##
+		
+		# session name
+		$name = "PHPSESSID",
+		
+		# session cookie_lifetime - defined in minutes
+		$lifetime = 0,
+		
+		# max session lifetime - defined in minutes
+		$maxlifetime = 30,
+		
+		# php.ini setting: session.use_only_cookies
+		$use_only_cookies = false,
+		
+		# php.ini setting: session.gc_probability
+		$gc_probability = 1,
+		
+		# php.ini setting: session.gc_divisor
+		$gc_divisor = 100,
+		
+		# php.ini setting: session.cache_limiter
+		$cache_limiter = "nocache",
+		
+		# session security features
+		#   0 = no extra security features
+		#   1 = user agent string is verified
+		#   2 = user agent string, and client ip address are verified
+		$security = 1;
 	
 	
 	function __construct () {
@@ -61,8 +93,52 @@ class ActiveSession {
 	
 	function init () {
 		//TODO validate and init zynapse's session features
+		$this->ini_setup();
+		$this->validate();
       $this->id = session_id();
 		$this->started = true;
+	}
+	
+	function validate () {
+		if ( isset($_SESSION[$this->key]) && count($_SESSION[$this->key]) ) {
+			$valid = true;
+			if ( $this->security > 0 ) {
+				if ( !isset($_SESSION[$this->key]['user_agent']) || $_SESSION[$this->key]['user_agent'] != $this->user_agent ) {
+					$valid = false;
+				}
+			}
+			if ( $this->security > 1 ) {
+				if ( !$this->is_aol_host() && (!isset($_SESSION[$this->key]['ip']) || $_SESSION[$this->key]['ip'] != $this->ip) ) {
+					$valid = false;
+				}
+			}
+			if ( !$valid ) {
+				$_SESSION = array();
+				$this->validate();
+			}
+		} else {
+			$_SESSION[$this->key] = array(
+				'user_agent' => $this->user_agent,
+				'ip' => $this->ip,
+			);
+		}
+	}
+	
+	function is_aol_host () {
+		if ( stristr($this->user_agent, 'AOL') || preg_match('/proxy\.aol\.com$/i', gethostbyaddr($this->ip)) ) {
+			return true;
+		}
+		return false;
+	}
+	
+	function ini_setup () {
+		ini_set('session.name', $this->name);
+		ini_set('session.cookie_lifetime', $this->lifetime);
+		ini_set('session.gc_maxlifetime', $this->maxlifetime);
+		ini_set('session.use_only_cookies', $this->use_only_cookies);
+		ini_set('session.gc_probability', $this->gc_probability);
+		ini_set('session.gc_divisor', $this->gc_divisor);
+		ini_set('session.cache_limiter', $this->cache_limiter);
 	}
 	
 }

@@ -53,13 +53,14 @@ class Zynapse {
 		// Enable PHP sessions
 		ActiveSession::start();
 		
-		// Init the environment system (ActionEnvironment)
-		self::$env = new ActionEnvironment();
-		self::$env->init();
-		
 		// Init the session control system (ActiveSession)
 		self::$session = new ActiveSession();
 		self::$session->init();
+		
+		// Init the environment system (ActionEnvironment)
+		self::$env = new ActionEnvironment();
+		self::$env->session =& self::$session;
+		self::$env->init();
 		
 		// Init the core controller system (ActionBase)
 		self::$base = new ActionBase();
