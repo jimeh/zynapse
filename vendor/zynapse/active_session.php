@@ -92,8 +92,7 @@ class ActiveSession {
 	}
 	
 	function init () {
-		//TODO validate and init zynapse's session features
-		$this->ini_setup();
+		$this->ini_setup(); // TODO get rid of the session settings, they don't seem to work
 		$this->validate();
       $this->id = session_id();
 		$this->started = true;
