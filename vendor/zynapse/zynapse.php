@@ -39,7 +39,7 @@ class Zynapse {
 		$env,     // ActionEnvironment
 		$base,    // ActionBase
 		$view,    // ActionView
-		$log,     // ActionLog
+		$log,     // ActiveLog
 		$locale,  // ActiveLocale
 		$session; // ActiveSession
 	

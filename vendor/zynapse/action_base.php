@@ -38,7 +38,7 @@ class ActionBase {
 		# Components
 		$env,    // ActionEnvironment
 		$view,   // ActionView
-		$log,    // ActionLog
+		$log,    // ActiveLog
 		$locale, // ActiveLocale
 		
 		# Paths
