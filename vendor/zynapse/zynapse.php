@@ -50,24 +50,38 @@ class Zynapse {
 		require_once(ZNAP_LIB_ROOT."/action_view.php");
 		require_once(ZNAP_LIB_ROOT."/active_session.php");
 		
-		// Enable PHP sessions
-		ActiveSession::start();
-		
-		// Init the session control system (ActiveSession)
+		# Create component objects
 		self::$session = new ActiveSession();
-		self::$session->init();
-		
-		// Init the environment system (ActionEnvironment)
 		self::$env = new ActionEnvironment();
+		self::$base = new ActionBase();
+		self::$view = new ActionView();
+		
+		# Assign internal component references
 		self::$env->session =& self::$session;
+		
+		self::$base->env =& self::$env;
+		self::$base->view =& self::$view;
+		// self::$base->log =& self::$log; //TODO Create ActionLog class
+		self::$base->locale =& self::$locale;
+		self::$base->session =& self::$session;
+		
+		self::$view->env =& self::$env;
+		self::$view->base =& self::$base;
+		// self::$view->log =& self::$log; //TODO Create ActionLog class
+		self::$view->locale =& self::$locale;
+		self::$view->session =& self::$session;
+		
+		
+		# Init the environment system (ActionEnvironment)
 		self::$env->init();
 		
-		// Init the core controller system (ActionBase)
-		self::$base = new ActionBase();
+		# Init the session control system (ActiveSession)
+		self::$session->init();
+		
+		# Init the core controller system (ActionBase)
 		self::$base->init();
 		
-		// Init the output and page rendering system (ActionView)
-		self::$view = new ActionView();
+		# Init the output and page rendering system (ActionView)
 		self::$view->init();
 		
 		echo "hello world<br />\n";

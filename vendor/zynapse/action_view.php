@@ -33,12 +33,26 @@
 
 class ActionView {
 	
+	public
+	
+		# Components
+		$env,     // ActionEnvironment
+		$base,    // ActionBase
+		$log,     // ActiveLog
+		$locale,  // ActiveLocale
+		$session, // ActiveSession
+	
+		# Misc.
+		$started = false;
+	
+	
 	function __construct () {
 		
 	}
 	
 	function init () {
 		
+		$this->started = true;
 	}
 	
 }

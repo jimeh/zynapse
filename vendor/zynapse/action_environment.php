@@ -41,11 +41,14 @@ class ActionEnvironment {
 		$root,
 		
 		# Components
-		$session,
+		$session, // ActiveSession
+		
+		# System
+		$is_windows,
+		$path_separator,
 		
 		# Misc.
-		$is_windows,
-		$path_separator;
+		$started = false;
 	
 	
 	function __construct () {
@@ -55,6 +58,7 @@ class ActionEnvironment {
 	function init () {
 		$this->set_include_paths();
 		$this->load_environment_file();
+		$this->started = true;
 	}
 	
 	function __wakeup () {

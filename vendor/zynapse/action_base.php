@@ -40,6 +40,7 @@ class ActionBase {
 		$view,   // ActionView
 		$log,    // ActiveLog
 		$locale, // ActiveLocale
+		$session, // ActiveSession
 		
 		# Paths
 		$apps_path,
@@ -48,7 +49,10 @@ class ActionBase {
 		$public_path,
 		$tmp_path,
 		$cache_path,
-		$script_path;
+		$script_path,
+		
+		# Misc.
+		$started = false;
 	
 	
 	function __construct () {
@@ -72,6 +76,7 @@ class ActionBase {
 	
 	function init () {
 		$this->set_paths();
+		$this->started = true;
 	}
 	
 	function set_paths () {

@@ -87,14 +87,11 @@ class ActiveSession {
 		
 	}
 	
-	function start () {
-		session_start();
-	}
-	
 	function init () {
-		$this->ini_setup(); // TODO get rid of the session settings, they don't seem to work
+		$this->ini_setup();
 		$this->validate();
       $this->id = session_id();
+		session_start();
 		$this->started = true;
 	}
 	
