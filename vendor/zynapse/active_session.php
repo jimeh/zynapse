@@ -34,15 +34,6 @@
 class ActiveSession {
 	
 	public
-	
-		# client user agent (OS, browser, etc.)
-		$user_agent = null,
-		
-		# client's remote ip address
-		$ip = null,
-	
-		# session id
-		$id = null,
 		
 		# session key to store verification data in
 		$key = '____active_session_verification_data____',
@@ -89,9 +80,8 @@ class ActiveSession {
 	
 	function init () {
 		$this->ini_setup();
-		$this->validate();
-      $this->id = session_id();
 		session_start();
+		$this->validate();
 		$this->started = true;
 	}
 	
@@ -99,29 +89,33 @@ class ActiveSession {
 		if ( isset($_SESSION[$this->key]) && count($_SESSION[$this->key]) ) {
 			$valid = true;
 			if ( $this->security > 0 ) {
-				if ( !isset($_SESSION[$this->key]['user_agent']) || $_SESSION[$this->key]['user_agent'] != $this->user_agent ) {
+				if ( !isset($_SESSION[$this->key]['user_agent']) || $_SESSION[$this->key]['user_agent'] != $_SERVER['HTTP_USER_AGENT'] ) {
 					$valid = false;
 				}
 			}
 			if ( $this->security > 1 ) {
-				if ( !$this->is_aol_host() && (!isset($_SESSION[$this->key]['ip']) || $_SESSION[$this->key]['ip'] != $this->ip) ) {
+				if ( !$this->is_aol_host() && (!isset($_SESSION[$this->key]['ip']) || $_SESSION[$this->key]['ip'] != $_SERVER['REMOTE_ADDR']) ) {
 					$valid = false;
 				}
 			}
 			if ( !$valid ) {
 				$_SESSION = array();
-				$this->validate();
+				$this->set_verification_data();
 			}
 		} else {
-			$_SESSION[$this->key] = array(
-				'user_agent' => $this->user_agent,
-				'ip' => $this->ip,
-			);
+			$this->set_verification_data();
 		}
 	}
 	
+	function set_verification_data () {
+		$_SESSION[$this->key] = array(
+			'user_agent' => $_SERVER['HTTP_USER_AGENT'],
+			'ip' => $_SERVER['REMOTE_ADDR'],
+		);
+	}
+	
 	function is_aol_host () {
-		if ( stristr($this->user_agent, 'AOL') || preg_match('/proxy\.aol\.com$/i', gethostbyaddr($this->ip)) ) {
+		if ( stristr($_SERVER['HTTP_USER_AGENT'], 'AOL') || preg_match('/proxy\.aol\.com$/i', gethostbyaddr($_SERVER['REMOTE_ADDR'])) ) {
 			return true;
 		}
 		return false;
