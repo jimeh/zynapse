@@ -5,7 +5,7 @@
 
 
    http://www.zynapse.org/
-   Copyright (c) 2009 Jim Myhrberg.
+   Copyright (c) 2010 Jim Myhrberg.
 
    ----------
    Permission is hereby granted, free of charge, to any person obtaining
@@ -36,10 +36,10 @@ class ActionBase {
 	public
 		
 		# Components
-		$env,    // ActionEnvironment
-		$view,   // ActionView
-		$log,    // ActiveLog
-		$locale, // ActiveLocale
+		$env,     // ActionEnvironment
+		$view,    // ActionView
+		$log,     // ActiveLog
+		$locale,  // ActiveLocale
 		$session, // ActiveSession
 		
 		# Paths
@@ -55,11 +55,11 @@ class ActionBase {
 		$started = false;
 	
 	
-	function __construct () {
+	public function __construct () {
 		
 	}
 	
-	function __sleep () {
+	public function __sleep () {
 		$blacklist = array_flip(array("env", "view", "log", "locale"));
 		$save = array();
 		foreach( $this as $key => $value ) {
@@ -70,16 +70,16 @@ class ActionBase {
 		return $save;
 	}
 	
-	function __wakeup () {
+	public function __wakeup () {
 		
 	}
 	
-	function init () {
+	public function init () {
 		$this->set_paths();
 		$this->started = true;
 	}
 	
-	function set_paths () {
+	private function set_paths () {
 		$this->apps_path = ZNAP_ROOT."/apps";
 		$this->lib_path = ZNAP_ROOT."/lib";
 		$this->log_path = ZNAP_ROOT."/log";

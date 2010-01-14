@@ -5,7 +5,7 @@
 
 
    http://www.zynapse.org/
-   Copyright (c) 2009 Jim Myhrberg.
+   Copyright (c) 2010 Jim Myhrberg.
 
    ----------
    Permission is hereby granted, free of charge, to any person obtaining
@@ -37,7 +37,7 @@ class ActionEnvironment {
 	
 		# Main
 		$environment,
-		$mode,
+		$format,
 		$root,
 		
 		# Components
@@ -62,6 +62,7 @@ class ActionEnvironment {
 	}
 	
 	function __wakeup () {
+		$this->set_include_paths();
 		$this->define_constants();
 	}
 	
@@ -82,7 +83,7 @@ class ActionEnvironment {
 		$host = $this->match_to_host($hosts);
 		if ( !empty($host) ) {
 			if ( !empty($host['environment']) ) $this->environment = $host['environment'];
-			if ( !empty($host['mode']) ) $this->mode = $host['mode'];
+			if ( !empty($host['format']) ) $this->format = $host['format'];
 			if ( !empty($host['root']) ) {
 				if ( !empty($_SERVER['REQUEST_URI']) ) $_SERVER['REQUEST_URI'] = '/'.$host['root'].$_SERVER['REQUEST_URI'];
 				if ( !empty($_SERVER['REDIRECT_URL']) ) $_SERVER['REDIRECT_URL'] = '/'.$host['root'].$_SERVER['REDIRECT_URL'];
@@ -113,9 +114,6 @@ class ActionEnvironment {
 	function define_constants () {
 		if ( !defined("ZNAP_ENV") ) {
 			define("ZNAP_ENV", $this->environment);
-		}
-		if ( !defined("ZNAP_MODE") ) {
-			define("ZNAP_MODE", $this->mode);
 		}
 	}
 	

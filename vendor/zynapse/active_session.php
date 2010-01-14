@@ -5,7 +5,7 @@
 
 
    http://www.zynapse.org/
-   Copyright (c) 2009 Jim Myhrberg.
+   Copyright (c) 2010 Jim Myhrberg.
 
    ----------
    Permission is hereby granted, free of charge, to any person obtaining

@@ -15,9 +15,9 @@
 $this->environment = "development";
 
 
-# Default server display mode - Overridden by host
+# Default output format - Overridden by host
 # specific configurations.
-$this->mode = "web";
+$this->format = "html";
 
 
 # When enabled, environment and more is set based
