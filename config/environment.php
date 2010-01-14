@@ -2,7 +2,7 @@
 /*
 
    Zynapse Environment
-    - configure server environments and display modes
+    - configure server environment
 
 */
 

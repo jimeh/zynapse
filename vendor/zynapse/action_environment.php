@@ -52,18 +52,13 @@ class ActionEnvironment {
 	
 	
 	function __construct () {
-
+		$this->set_include_paths();
 	}
 	
 	function init () {
 		$this->set_include_paths();
 		$this->load_environment_file();
 		$this->started = true;
-	}
-	
-	function __wakeup () {
-		$this->set_include_paths();
-		$this->define_constants();
 	}
 	
 	function load_environment_file () {

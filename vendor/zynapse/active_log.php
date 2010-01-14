@@ -1,7 +1,7 @@
 <?php
 /*
 
-   ActionBase - the core that does all the heavy lifting
+   ActiveLog - event logging
 
 
    http://www.zynapse.org/
@@ -31,48 +31,29 @@
 */
 
 
-class ActionBase {
+class ActiveLog {
 	
 	public
-		
+	
 		# Components
 		$env,     // ActionEnvironment
+		$base,    // ActionBase
 		$view,    // ActionView
-		$log,     // ActiveLog
 		$locale,  // ActiveLocale
 		$session, // ActiveSession
-		
-		# Paths
-		$apps_path,
-		$lib_path,
-		$log_path,
-		$public_path,
-		$tmp_path,
-		$cache_path,
-		$script_path,
-		
+	
 		# Misc.
 		$started = false;
 	
 	
-	public function __construct () {
-		$this->set_paths();
+	function __construct () {
+		
 	}
 	
-	public function init () {
+	function init () {
 		$this->started = true;
 	}
 	
-	private function set_paths () {
-		$this->apps_path = ZNAP_ROOT."/apps";
-		$this->lib_path = ZNAP_ROOT."/lib";
-		$this->log_path = ZNAP_ROOT."/log";
-		$this->public_path = ZNAP_ROOT."/public";
-		$this->tmp_path = ZNAP_ROOT."/tmp";
-		$this->cache_path = $this->tmp_path."/cache";
-		$this->script_path = ZNAP_ROOT."/script";
-	}
-
 }
 
 ?>

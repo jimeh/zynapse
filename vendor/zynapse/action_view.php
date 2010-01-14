@@ -51,7 +51,6 @@ class ActionView {
 	}
 	
 	function init () {
-		
 		$this->started = true;
 	}
 	

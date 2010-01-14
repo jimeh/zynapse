@@ -46,30 +46,39 @@ class Zynapse {
 	
 	function init () {
 		require_once(ZNAP_LIB_ROOT."/action_environment.php");
+		require_once(ZNAP_LIB_ROOT."/active_session.php");
 		require_once(ZNAP_LIB_ROOT."/action_base.php");
 		require_once(ZNAP_LIB_ROOT."/action_view.php");
-		require_once(ZNAP_LIB_ROOT."/active_session.php");
+		require_once(ZNAP_LIB_ROOT."/active_log.php");
 		
 		# Create component objects
-		self::$session = new ActiveSession();
 		self::$env = new ActionEnvironment();
+		self::$session = new ActiveSession();
 		self::$base = new ActionBase();
 		self::$view = new ActionView();
+		self::$log = new ActiveLog();
 		
 		# Assign internal component references
 		self::$env->session =& self::$session;
+		self::$env->base =& self::$base;
 		
 		self::$base->env =& self::$env;
 		self::$base->view =& self::$view;
-		// self::$base->log =& self::$log; //TODO Create ActionLog class
+		self::$base->log =& self::$log;
 		self::$base->locale =& self::$locale;
 		self::$base->session =& self::$session;
 		
 		self::$view->env =& self::$env;
 		self::$view->base =& self::$base;
-		// self::$view->log =& self::$log; //TODO Create ActionLog class
+		self::$view->log =& self::$log;
 		self::$view->locale =& self::$locale;
 		self::$view->session =& self::$session;
+		
+		self::$log->env =& self::$env;
+		self::$log->base =& self::$base;
+		self::$log->view =& self::$view;
+		self::$log->locale =& self::$locale;
+		self::$log->session =& self::$session;
 		
 		
 		# Init the environment system (ActionEnvironment)
@@ -80,6 +89,9 @@ class Zynapse {
 		
 		# Init the core controller system (ActionBase)
 		self::$base->init();
+		
+		# Init the logging system (ActiveLog)
+		self::$log->init();
 		
 		# Init the output and page rendering system (ActionView)
 		self::$view->init();
