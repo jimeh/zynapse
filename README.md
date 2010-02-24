@@ -23,7 +23,18 @@ While on holiday in August 2009 however, I started working on a complete rewrite
 * A generator script which works just like Rails' `script/generate` command.
 * Locale system, similar to the i18n functionality which was included in Rails 2.2, only Zynapse had it 2 years earlier.
 * Preference storage system, which works much like a key/value store for application preferences, and writes data to files on disk.
+* Some neat security features which attempts to reset session data it believes a session has been hijacked.
+* Can auto-detect which environment settings to run with based on the domain name used to access the app.
 * Other smaller neat features and quirks which I don't really remember anymore.
+
+## Sites Currently Powered By Zynapse
+
+As of 25th Feb, 2010.
+
+* [Lib.rario.us](http://lib.rario.us/) by [sxtxixtxcxh](http://github.com/sxtxixtxcxh/).
+* [Steve Jobs Facts](http://www.stevejobsfacts.com/) by [jimeh](http://github.com/jimeh) and [sxtxixtxcxh](http://github.com/sxtxixtxcxh/).
+* [Eimai Malakas](http://eimaimalakas.com/) by [jimeh](http://github.com/jimeh) and [jonromero](http://github.com/jonromero).
+* [Search The Three](http://www.searchthethree.com/) by [jimeh](http://github.com/jimeh) (super-old and abandoned).
 
 ## License
 
