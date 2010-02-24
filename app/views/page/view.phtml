@@ -1,0 +1,28 @@
+<?php if (isset($page)): ?>
+<?php foreach ($page as $key => $value): if (array_key_exists($key, $columns)): ?>
+	<b><?php echo $key; ?>:</b> <?php echo $value; ?><br />
+<?php endif; endforeach; ?>
+<?php if ( $page->categories ): ?>
+	<b>Categories:</b> <?php
+	$cats = array();
+	foreach ($page->categories as $category) {
+		$cats[] = $category['name'];
+	}
+	echo implode(', ', $cats);
+	?>
+<?php endif; ?>
+
+<br />
+<br />
+<b>Comments:</b><br />
+<hr />
+<?php if ( $page->comments ): ?>
+	<?php render_partial('comment', $page->comments); ?>
+<?php else: ?>
+- No Comments -<br />
+<hr />
+<?php endif; ?>
+
+<?php else: ?>
+The page you're trying to view doesn't exist.
+<?php endif; ?>

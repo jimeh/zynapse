@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title><?php echo $message; ?></title>
+
+	<?php script_lib('jquery'); ?>
+	
+	
+	<style type="text/css" media="screen">
+		BODY {
+			font-family: verdana, tahoma, arial, helvetica, sans-serif;
+			font-size: 12px;
+			margin: 0px;
+			padding: 16px;
+		}
+		
+		CODE {
+			margin: 0px;
+			padding: 12px 14px 14px 14px;
+			display: block;
+		}
+		
+		A {
+			color: #000;
+		}
+		A:hover {
+			background-color: #F5F5F5;
+		}
+
+		H2 {
+			font-size: 22px;
+			margin: 10px 5px 12px 5px;
+		}
+
+		H4 {
+			font-weight: normal;
+			margin: 15px 0px 5px 0px;
+		}
+
+		PRE {			
+			background-color: #EEE;
+			padding: 0px;
+			margin: 0px;
+			font-size: 11px;
+		}
+		
+		#details {
+			background-color: #EEE;
+			font-style: italic;
+			padding: 14px;
+			margin: 0px;
+		}
+		
+		.toggle {
+			text-decoration: underline;
+			cursor: pointer;
+		}
+		
+		.box {
+			display: none;
+		}
+	</style>
+	
+	<script type="text/javascript" charset="utf-8">
+		
+		$(document).ready(function(){
+			$(".toggle").toggle(function(event){
+				$(this).parents().next('.box').animate({ height: 'show', opacity: 'show' }, 'medium');
+			},function(){
+				$(this).parents().next('.box').animate({ height: 'hide', opacity: 'hide' }, 'medium');
+			});
+		});
+		
+	</script>
+	
+</head>
+
+<body>
+<h2><?php echo $message; ?></h2>
+<?php if ($details !== null): ?>
+<div id="details">
+	<?php echo $details; ?>
+</div>
+<?php endif; ?>
+
+
+<h4><a class="toggle">Show framework trace</a></h4>
+<pre class="box" ><code><?php echo $error->get_trace(); ?></code></pre>
+
+<h4><a class="toggle">Show Znap::$prefs dump</a></h4>
+<pre class="box"><code><?php print_r(Znap::$prefs); ?></code></pre>
+
+<h4><a class="toggle">Show $_SESSION dump</a></h4>
+<pre class="box"><code><?php print_r($_SESSION); ?></code></pre>
+
+<h4><a class="toggle">Show $_GET dump</a></h4>
+<pre class="box"><code><?php print_r($_GET); ?></code></pre>
+
+<h4><a class="toggle">Show $_POST dump</a></h4>
+<pre class="box"><code><?php print_r($_POST); ?></code></pre>
+
+<h4><a class="toggle">Show $_COOKIE dump</a></h4>
+<pre class="box" ><code><?php print_r($_COOKIE); ?></code></pre>
+
+<h4><a class="toggle">Show $_FILES dump</a></h4>
+<pre class="box"><code><?php print_r($_FILES); ?></code></pre>
+
+<h4><a class="toggle">Show Timer dump</a></h4>
+<pre class="box"><code><?php Timer::term(5); echo Timer::debug(); ?></code></pre>
+
+</body>
+</html>

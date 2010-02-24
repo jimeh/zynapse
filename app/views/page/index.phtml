@@ -1,0 +1,16 @@
+hello world!<br />
+<br />
+you've seen this page <?php echo $views ?> time<?php  if ($views > 1) echo 's'; ?>. <a href="?kill=yes">reset</a>
+
+
+<?php if ( isset($pages) && count($pages) ): ?>
+<table border="1" cellspacing="0" cellpadding="2">
+	<tr>
+		<?php foreach ($columns as $column => $col_info): ?>
+		<th><?php echo $col_info['HumanName']; ?></th>
+		<?php endforeach; ?>
+	</tr>
+	<?php render_partial('page_list_item', $pages); ?>
+</table>
+
+<?php endif; ?>

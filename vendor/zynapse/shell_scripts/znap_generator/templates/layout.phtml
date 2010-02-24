@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo App::$strings['_ZNAP_LANG']; ?>" lang="<?php echo App::$strings['_ZNAP_LANG']; ?>">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=<?php echo App::$strings['_ZNAP_ENCODING']; ?>"/>
+
+	<title>[layout]</title>
+	
+</head>
+
+<body>
+
+<?php if(Session::isset_flash('error')): ?>
+	<div style="color: red;"><?php echo Session::flash('error') ?></div>
+<?php elseif(Session::isset_flash('notice')): ?>
+	<div style="color: green;"><?php echo Session::flash('notice') ?></div>
+<?php endif; ?>
+
+<?php echo $content_for_layout; ?>
+
+<?php if (Timer::$started): ?>
+<div id="timer">
+	page generated in <?php echo Timer::end();?> seconds.
+</div>
+<?php endif; ?>
+
+</body>
+</html>

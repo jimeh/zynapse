@@ -1,0 +1,9 @@
+<tr>
+	<?php foreach ($page_list_item as $key => $value): ?>
+	<?php if ($key == 'title'): ?>
+	<td><a href="/page/<?php echo $page_list_item['id']?>"><?php echo $value; ?></td>
+	<?php else: ?>
+	<td><?php echo $value; ?></td>
+	<?php endif; ?>
+	<?php endforeach; ?>
+</tr>
