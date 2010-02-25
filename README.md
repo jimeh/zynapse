@@ -18,9 +18,23 @@ After early 2008 I hardly spent any time working on Zynapse sadly, as I simply d
 
 While on holiday in August 2009 however, I started working on a complete rewrite of Zynapse from the ground up which I called Zynapse2. Said rewrite is available in the `dev` branch. It's highly incomplete, but if you're curious, I encourage you to fork the project and play with both the 1.x code and the rewrite in the `dev` branch.
 
+## Requirements
+
+* PHP 5.2.2 or later (might work on earlier 5.x, but its not tested).
+* MySQL 4 or newer (untested on earlier versions).
+* Apache's mod_rewrite with the `.htaccess` file enabled or similar functionality.
+
+## Running / Testing
+
+To get Zynapse up and running, you'll need to configure a virtual host in Apache, and make sure `mod_rewrite` is enabled, and `AllowOverride` is set to `all` so the `.htaccess` file works.
+
+If you're not using Apache, you'll need to duplicate the `mod_rewrite` functionality and it's configuration from the `.htaccess` file for things to work.
+
+As a last step, run `script/fix_permissions` to ensure logs, caches and other required paths are writable by Zynapse.
+
 ## Some Noteworthy Features
 
-* A generator script which works just like Rails' `script/generate` command.
+* A generator script which works just like Rails' `script/generate` command. Run without any arguments to see the help info.
 * Locale system, similar to the i18n functionality which was included in Rails 2.2, only Zynapse had it 2 years earlier.
 * Preference storage system, which works much like a key/value store for application preferences, and writes data to files on disk.
 * Some neat security features which attempts to reset session data it believes a session has been hijacked.
