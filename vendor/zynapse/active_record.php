@@ -871,7 +871,7 @@ class ActiveRecord {
 		if ( ($field == 'integer' || $field == 'decimal') && preg_match('/^[0-9\-\.]+$/', $input) ) {
 			return $input;
 		} else {
-			return "'".addslashes($input)."'";
+			return "'".addslashes(urldecode($input))."'";
 		}
 	}
 	
