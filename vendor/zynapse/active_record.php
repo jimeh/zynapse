@@ -613,14 +613,12 @@ class ActiveRecord {
 				$cond = array();
 				foreach( $conditions as $key => $value ) {
 					if ( !preg_match('/^[0-9]+$/', $key) && !is_array($value) ) {
-						$cond[] = '`'.$key."` = '".$value."'";
+						$cond[] = '`'.$key."` = ".$this->sql_quote($value);
 					} elseif ( !is_array($value) && preg_match('/^[0-9]+$/', $value) ) {
 						$cond[] = '`'.$this->_primary_key."` = '".$value."'";
 					} elseif(is_array($value)) {
 						$cond[] = '`'.$key."` IN (".implode(",",$this->sql_quote($value)).")";
-  					} else {
-						$cond[] = $this->sql_quote($value);
-					}
+  					}
 				}
 				$operator = ( !empty($options['operator']) ) ? $options['operator'] : 'AND' ;
 				return ' WHERE '.implode(' '.$operator.' ', $cond);
@@ -871,7 +869,7 @@ class ActiveRecord {
 		if ( ($field == 'integer' || $field == 'decimal') && preg_match('/^[0-9\-\.]+$/', $input) ) {
 			return $input;
 		} else {
-			return "'".addslashes(urldecode($input))."'";
+			return "'".addslashes($input)."'";
 		}
 	}
 	
